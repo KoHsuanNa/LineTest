@@ -1,1 +1,1 @@
-web: python LINENotify.py
+web: python run.py
