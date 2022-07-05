@@ -1,2 +1,1 @@
-flask
-twstock
+web: python LINENotify.py
