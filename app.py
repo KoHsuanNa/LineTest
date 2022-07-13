@@ -65,7 +65,7 @@ def handle_message(event):
         #time.sleep(60)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage('一分鐘到了！'))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
 
 #主程式
 import os
