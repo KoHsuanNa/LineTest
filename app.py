@@ -19,12 +19,11 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-
-app = Flask(__name__)
-
 from linebot.models import TextSendMessage
 import time
 import re
+app = Flask(__name__)
+
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('YzA8hOYnlQrI+qd9xViyd/RdrPTN4B1Y9HZ9Q97mZEcdA0wS9kvJ4flUpMpXjHPJG4Wh+ntbAKUH2VMHU06QTG/dQWoIOZNXsmVX5MlXbBv5MvJUnXZi/xDC3jTVDu318pg+EY9Z4GRKSKBXhtfoRQdB04t89/1O/w1cDnyilFU=')
 # 必須放上自己的Channel Secret
@@ -61,10 +60,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('1分鐘後提醒我',message):
+    if re.match('一分鐘後提醒我',message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('收到！'))
         time.sleep(60)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('1分鐘到了！'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('一分鐘到了！'))
         
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
