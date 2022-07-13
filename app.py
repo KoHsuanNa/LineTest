@@ -32,7 +32,7 @@ handler = WebhookHandler('b42fb349160d45f84b0126873126a340')
 yourID = 'Uad6ef6c5ff973a4fdbce4101732f1be8'
 
 
-# line_bot_api.push_message('Uad6ef6c5ff973a4fdbce4101732f1be8', TextSendMessage(text='你可以開始了'))
+line_bot_api.push_message('Uad6ef6c5ff973a4fdbce4101732f1be8', TextSendMessage(text='可以開始了'))
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -60,7 +60,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('一分鐘後提醒我',message):
+    if re.match('一分鐘',message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('收到！'))
         #time.sleep(60)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage('一分鐘到了！'))
