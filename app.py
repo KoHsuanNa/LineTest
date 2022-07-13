@@ -24,6 +24,8 @@ import time
 import re
 app = Flask(__name__)
 
+a = 2
+
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('YzA8hOYnlQrI+qd9xViyd/RdrPTN4B1Y9HZ9Q97mZEcdA0wS9kvJ4flUpMpXjHPJG4Wh+ntbAKUH2VMHU06QTG/dQWoIOZNXsmVX5MlXbBv5MvJUnXZi/xDC3jTVDu318pg+EY9Z4GRKSKBXhtfoRQdB04t89/1O/w1cDnyilFU=')
 # 必須放上自己的Channel Secret
@@ -67,6 +69,12 @@ def handle_message(event):
     elif re.match('5分鐘後提醒我',message):
         time.sleep(300)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('5分鐘到了！'))
+    if re.match('設定到站提醒',message):
+         flex_message = TextSendMessage(text='請選擇時間',
+                                quick_reply=QuickReply(items=[
+                                    QuickReplyButton(action=MessageAction(label=a+"分鐘", text=a+"分鐘後提醒我"))]))
+         time.sleep(a*60)
+         line_bot_api.reply_message(event.reply_token, flex_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
 
