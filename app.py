@@ -72,8 +72,11 @@ def handle_message(event):
     if re.match('設定到站提醒',message):
          flex_message = TextSendMessage(text='請選擇時間',
                                 quick_reply=QuickReply(items=[
-                                    QuickReplyButton(action=MessageAction(label= a+"分鐘", text=a+"分鐘後提醒我"))]))
+                                    QuickReplyButton(action=MessageAction(label= "2分鐘", text="2分鐘後提醒我"))]))
          line_bot_api.reply_message(event.reply_token, flex_message)
+    elif re.match('2分鐘後提醒我',message):
+        time.sleep(120)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘到了！'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
 
