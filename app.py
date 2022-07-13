@@ -61,7 +61,6 @@ def callback():
 def handle_message(event):
     message = text=event.message.text
     if re.match('一分鐘後提醒我',message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('收到！'))
         time.sleep(60)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('一分鐘到了！'))
         
