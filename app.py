@@ -24,7 +24,7 @@ import time
 import re
 app = Flask(__name__)
 
-a = 2.0
+a = 2
 
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('YzA8hOYnlQrI+qd9xViyd/RdrPTN4B1Y9HZ9Q97mZEcdA0wS9kvJ4flUpMpXjHPJG4Wh+ntbAKUH2VMHU06QTG/dQWoIOZNXsmVX5MlXbBv5MvJUnXZi/xDC3jTVDu318pg+EY9Z4GRKSKBXhtfoRQdB04t89/1O/w1cDnyilFU=')
@@ -75,7 +75,7 @@ def handle_message(event):
                                     QuickReplyButton(action=MessageAction(label= "2分鐘", text="2分鐘後提醒我"))]))
          line_bot_api.reply_message(event.reply_token, flex_message)
     elif re.match('2分鐘後提醒我',message):
-        time.sleep(120)
+        time.sleep(a*60)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘到了！'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
