@@ -75,6 +75,7 @@ def handle_message(event):
                                     QuickReplyButton(action=MessageAction(label= "2分鐘", text="2分鐘後提醒我"))]))
          line_bot_api.reply_message(event.reply_token, flex_message)
     elif re.match('2分鐘後提醒我',message):
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('設定完成'))
         time.sleep(a*60)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘到了！'))
     else:
