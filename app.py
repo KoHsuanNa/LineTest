@@ -100,7 +100,7 @@ def handle_message(event):
                          ))]))
          line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
     elif re.match('到站提醒',message):
-        time.sleep(seconds-120)
+        #time.sleep(seconds-120)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘後即將到站！請準備下車~'))
     
     else:
