@@ -30,7 +30,7 @@ a = 2
 dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
 dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
 timenow = dt2.strftime("%Y-%m-%d %H:%M:%S")
-time_2 = '2022-08-08 16:05:00'                                      #設定預計抵達時間
+time_2 = '2022-08-08 16:10:00'                                      #設定預計抵達時間
 time_1_struct = datetime.strptime(timenow, "%Y-%m-%d %H:%M:%S")     #現在時間
 time_2_struct = datetime.strptime(time_2, "%Y-%m-%d %H:%M:%S")      #預計抵達時間
 seconds = (time_2_struct - time_1_struct).seconds                   #相差的秒數
@@ -98,6 +98,7 @@ def handle_message(event):
                              display_text='到站提醒',
                              data='action=提醒測試'
                          ))]))
+         line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
     elif re.match('到站提醒',message):
         time.sleep(seconds-120)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘後即將到站！請準備下車~'))
