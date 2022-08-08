@@ -20,11 +20,20 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 from linebot.models import TextSendMessage
+
+from datetime import datetime, date,timezone,timedelta
 import time
 import re
 app = Flask(__name__)
 
 a = 2
+dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
+dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
+timenow = dt2.strftime("%Y-%m-%d %H:%M:%S")
+time_2 = '2022-08-08 15:45:00'                                      #設定預計抵達時間
+time_1_struct = datetime.strptime(timenow, "%Y-%m-%d %H:%M:%S")     #現在時間
+time_2_struct = datetime.strptime(time_2, "%Y-%m-%d %H:%M:%S")      #預計抵達時間
+seconds = (time_2_struct - time_1_struct).seconds                   #相差的秒數
 
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('YzA8hOYnlQrI+qd9xViyd/RdrPTN4B1Y9HZ9Q97mZEcdA0wS9kvJ4flUpMpXjHPJG4Wh+ntbAKUH2VMHU06QTG/dQWoIOZNXsmVX5MlXbBv5MvJUnXZi/xDC3jTVDu318pg+EY9Z4GRKSKBXhtfoRQdB04t89/1O/w1cDnyilFU=')
@@ -77,6 +86,21 @@ def handle_message(event):
     elif re.match('2分鐘後提醒我',message):
         time.sleep(a*60)
         line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘到了！'))
+    if re.match('告訴我秘密',message):
+         image_carousel_template_message = TemplateSendMessage(
+             alt_text='路線',
+             template=ImageCarouselTemplate(
+                 columns=[
+                     ImageCarouselColumn(
+                         image_url='https://github.com/KoHsuanNa/LineTest/blob/main/resource/IMG_5568.jpg?raw=true',
+                         action=PostbackAction(
+                             label='開始設定到站提醒',
+                             display_text='到站提醒',
+                         ))]))
+    elif re.match('到站提醒',message):
+        time.sleep(seconds-120)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('2分鐘後即將到站！請準備下車~'))
+    
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
 
