@@ -21,6 +21,8 @@ from linebot.exceptions import (
 from linebot.models import *
 from linebot.models import TextSendMessage
 
+from linebot.exceptions import LineBotApiError
+
 from datetime import datetime, date,timezone,timedelta
 import time
 import re
@@ -109,12 +111,7 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
      # get user id when reply
-    user_id = event.source.user_id
-    print("user_id =", user_id)
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
     
 
 
