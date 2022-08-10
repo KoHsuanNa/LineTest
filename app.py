@@ -105,6 +105,12 @@ def handle_message(event):
     
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
+    
+    # get user id when reply
+    
+    if re.match('使用者',message):
+        user_id = event.source.user_id
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('我的使用者ID是:',user_id))
 
 #主程式
 import os
