@@ -105,11 +105,16 @@ def handle_message(event):
     
     if re.match('使用者',message):
         user_id = event.source.user_id
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('我的使用者ID是:',user_id))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(user_id))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
-    
-    # get user id when reply
+     # get user id when reply
+    user_id = event.source.user_id
+    print("user_id =", user_id)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
     
 
 
