@@ -13,9 +13,6 @@ from datetime import datetime, date,timezone,timedelta
 import time
 import re
 
-import psycopg2
-import mysql.connector
-
 app = Flask(__name__)
 
 a = 2
@@ -27,14 +24,6 @@ time_1_struct = datetime.strptime(timenow, "%Y-%m-%d %H:%M:%S")     #現在時�
 time_2_struct = datetime.strptime(time_2, "%Y-%m-%d %H:%M:%S")      #預計抵達時間
 seconds = (time_2_struct - time_1_struct).seconds                   #相差的秒數
 
-conn = psycopg2.connect(database="d8mnj2r4sveur8",
-                        user="ggjhgfkkrlohmu",
-                        password="7e069b5749e5ad20c061c74185dc470b8e24b2f699fff4597f8be1739f98d38b",
-                        host="ec2-34-201-95-176.compute-1.amazonaws.com",
-                        port="5432")
-print("Opened database successfully")
-
-cursor = conn.cursor()
 
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('YzA8hOYnlQrI+qd9xViyd/RdrPTN4B1Y9HZ9Q97mZEcdA0wS9kvJ4flUpMpXjHPJG4Wh+ntbAKUH2VMHU06QTG/dQWoIOZNXsmVX5MlXbBv5MvJUnXZi/xDC3jTVDu318pg+EY9Z4GRKSKBXhtfoRQdB04t89/1O/w1cDnyilFU=')
@@ -111,13 +100,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('基本上以圖文選單操作  \n*輸入：一分鐘-->1分鐘後回傳：一分鐘到了！  \n*輸入：5分鐘後提醒我-->5分鐘後回傳：5分鐘到了！  \n*輸入：設定到站提醒-->出現2分鐘選項-->按下會自動發送2分鐘後提醒我-->2分鐘後回傳：2分鐘到了！  \n*輸入：使用者 -->回傳：userid'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
-    
-    # 插入資料至資料表
-    #cursor.execute(
-    #    "INSERT INTO userdata (userid, time) VALUES (%s,%s);", (user_id,""))
-    #print("Inserted 1 rows of data")
-    #conn.commit()
-    #cursor.close()
     
 
 #主程式
