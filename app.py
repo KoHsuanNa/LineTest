@@ -72,12 +72,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    # 插入資料至資料表
-    cursor.execute(
-        "INSERT INTO userdata (userid, time) VALUES (%s,%s);", (user_id,""))
-    print("Inserted 1 rows of data")
-    conn.commit()
-    #cursor.close()
     if re.match('一分鐘',message):
         #line_bot_api.reply_message(event.reply_token,TextSendMessage('收到！'))
         time.sleep(60)
@@ -117,7 +111,14 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('基本上以圖文選單操作  \n*輸入：一分鐘-->1分鐘後回傳：一分鐘到了！  \n*輸入：5分鐘後提醒我-->5分鐘後回傳：5分鐘到了！  \n*輸入：設定到站提醒-->出現2分鐘選項-->按下會自動發送2分鐘後提醒我-->2分鐘後回傳：2分鐘到了！  \n*輸入：使用者 -->回傳：userid'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
-
+    
+    # 插入資料至資料表
+    cursor.execute(
+        "INSERT INTO userdata (userid, time) VALUES (%s,%s);", (user_id,""))
+    print("Inserted 1 rows of data")
+    conn.commit()
+    #cursor.close()
+    
 
 #主程式
 import os
