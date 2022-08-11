@@ -96,7 +96,7 @@ def handle_message(event):
     if re.match('使用者',message):
         user_id = event.source.user_id
         line_bot_api.reply_message(event.reply_token,[TextSendMessage('你的user id是：'),TextSendMessage(user_id)])
-    if re.match('使用者是誰',message):
+    if re.match('是誰',message):
         content = "{}: {}".format("我是", event.source.user_id)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=content))
     if re.match('使用說明',message):
