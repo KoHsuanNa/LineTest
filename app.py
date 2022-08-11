@@ -95,7 +95,7 @@ def handle_message(event):
     
     if re.match('使用者',message):
         user_id = event.source.user_id
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(user_id))
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage('你的user id是：'),TextSendMessage(user_id)])
     if re.match('使用說明',message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('基本上以圖文選單操作  \n*輸入：一分鐘-->1分鐘後回傳：一分鐘到了！  \n*輸入：5分鐘後提醒我-->5分鐘後回傳：5分鐘到了！  \n*輸入：設定到站提醒-->出現2分鐘選項-->按下會自動發送2分鐘後提醒我-->2分鐘後回傳：2分鐘到了！  \n*輸入：使用者 -->回傳：userid'))
     else:
