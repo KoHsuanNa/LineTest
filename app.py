@@ -113,10 +113,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
     
     # 插入資料至資料表
-    cursor.execute(
-        "INSERT INTO userdata (userid, time) VALUES (%s,%s);", (user_id,""))
-    print("Inserted 1 rows of data")
-    conn.commit()
+    #cursor.execute(
+    #    "INSERT INTO userdata (userid, time) VALUES (%s,%s);", (user_id,""))
+    #print("Inserted 1 rows of data")
+    #conn.commit()
     #cursor.close()
     
 
