@@ -13,7 +13,7 @@ from datetime import datetime, date,timezone,timedelta
 import time
 import re
 
-from myDB import *
+from DB import *
 app = Flask(__name__)
 
 a = 2
@@ -102,14 +102,20 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=content))
     if re.match('使用說明',message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('基本上以圖文選單操作  \n*輸入：一分鐘-->1分鐘後回傳：一分鐘到了！  \n*輸入：5分鐘後提醒我-->5分鐘後回傳：5分鐘到了！  \n*輸入：設定到站提醒-->出現2分鐘選項-->按下會自動發送2分鐘後提醒我-->2分鐘後回傳：2分鐘到了！  \n*輸入：使用者 -->回傳：userid'))
+    if re.match('紀錄',message):
+        try:
+            record_list = prepare_record(message)
+            result = insert_record(record_list)
+
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+        except:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="資料上傳失敗"))
+    elif re.match('查詢',message):
+         result = select_record()
+         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
-    # 插入資料至資料表
-    cursor.execute(
-       "INSERT INTO userdata (userid, time) VALUES (%s, %s);", (user_id, ""))
-    print("Inserted 1 rows of data")
-    conn.commit()
-    #cursor.close()
+
 
 #主程式
 import os
