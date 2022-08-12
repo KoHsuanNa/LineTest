@@ -13,7 +13,7 @@ from datetime import datetime, date,timezone,timedelta
 import time
 import re
 
-from yuanzai.DB import *
+from DB import *
 app = Flask(__name__)
 
 a = 2
