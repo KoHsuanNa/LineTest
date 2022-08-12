@@ -13,8 +13,6 @@ from datetime import datetime, date,timezone,timedelta
 import time
 import re
 
-import sys
-sys.path.append('..')
 from DB import *
 app = Flask(__name__)
 
