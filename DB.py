@@ -6,15 +6,15 @@ from linebot.models.responses import Content
 DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a yuanzai1').read()[:-1]
 
 # connect to database
-conn   = psycopg2.connect(DATABASE_URL, sslmode='require')
-cursor = conn.cursor()
+#conn   = psycopg2.connect(DATABASE_URL, sslmode='require')
+#cursor = conn.cursor()
 
 # create a table
-create_table_query = '''
-    CREATE TABLE test_table(
-    userid  VARCHAR  PRIMARY KEY,
-    time    TIMESTAMP );
-'''
+#create_table_query = '''
+#    CREATE TABLE test_table(
+#    userid  VARCHAR  PRIMARY KEY,
+#    time    TIMESTAMP );
+#'''
 #execute query
 #cursor.execute(create_table_query)
 #conn.commit()
@@ -32,7 +32,7 @@ create_table_query = '''
 
 #count = cursor.rowcount
 #print(count, "Record inserted successfully into database")
-
+'''
 postgres_select_query = f"""SELECT * FROM test_table"""
 
 cursor.execute(postgres_select_query)
@@ -40,7 +40,7 @@ rows = cursor.fetchall()
 
 for row in rows:  # 將讀到的資料全部print出來
    print("Data_row = (%s, %s)" %(str(row[0]), str(row[1])))
-
+'''
 dt7 = datetime.utcnow().replace(tzinfo=timezone.utc)
 dt8 = dt7.astimezone(timezone(timedelta(hours=8)))
 timenow = dt8.strftime("%Y-%m-%d %H:%M:%S")
