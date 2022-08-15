@@ -87,7 +87,7 @@ def handle_message(event):
                          action=PostbackAction(
                              label='開始設定到站提醒',
                              text='欸欸提醒我',
-                             #data='action=提醒測試'
+                             data='action=欸欸提醒我'
                          ))]))
          line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
     if re.match('欸欸提醒我',message):
