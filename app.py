@@ -84,9 +84,9 @@ def handle_message(event):
                  columns=[
                      ImageCarouselColumn(
                          image_url='https://raw.githubusercontent.com/KoHsuanNa/LineTest/main/resource/IMG_5568.jpg',
-                         action=PostbackTemplateAction(
+                         action=PostbackAction(
                              label='開始設定到站提醒',
-                             text='提醒我',
+                             text='欸欸提醒我',
                              #data='action=提醒測試'
                          ))]))
          line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
