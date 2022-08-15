@@ -20,7 +20,7 @@ a = 2
 dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
 dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
 timenow = dt2.strftime("%Y-%m-%d %H:%M:%S")
-time_2 = '2022-08-10 14:15:00'                                      #設定預計抵達時間
+time_2 = '2022-08-15 15:00:00'                                      #設定預計抵達時間
 time_1_struct = datetime.strptime(timenow, "%Y-%m-%d %H:%M:%S")     #現在時間
 time_2_struct = datetime.strptime(time_2, "%Y-%m-%d %H:%M:%S")      #預計抵達時間
 seconds = (time_2_struct - time_1_struct).seconds                   #相差的秒數
@@ -86,7 +86,7 @@ def handle_message(event):
                          image_url='https://raw.githubusercontent.com/KoHsuanNa/LineTest/main/resource/IMG_5568.jpg',
                          action=PostbackAction(
                              label='開始設定到站提醒',
-                             display_text='到站提醒',
+                             display_text='提醒我',
                              data='action=提醒測試'
                          ))]))
          line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
