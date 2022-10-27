@@ -2,7 +2,7 @@ services:
 - type: web
   name: line-bot
   env: python
-#  repo: https://github.com/KoHsuanNa/LineTest
+  repo: https://github.com/KoHsuanNa/LineTest
   buildCommand: pip install gunicorn -r requirements.txt
   startCommand: gunicorn app:app
   plan: free
