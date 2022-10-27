@@ -111,9 +111,9 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         except:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text="資料上傳失敗"))
-    elif re.match('查詢',message):
-         result = select_record()
-         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    #elif re.match('查詢',message):
+    #     result = select_record()
+    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('呵呵'))
 
